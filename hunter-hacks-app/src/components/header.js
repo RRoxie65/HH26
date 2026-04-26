@@ -3,7 +3,7 @@ import "./header.css";
 function Header() {
    return (
       <header className='heading'>
-         <span>FareCity?</span>
+         <span>Name</span>
          <nav>
             <a href='#map'>Map</a>
             <a href='#about'>About</a>
