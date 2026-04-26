@@ -1,15 +1,12 @@
-import { useRef, forwardRef } from "react";
-
-const MapComponent = forwardRef((props, ref) => {
+function Mapping({ iframeRef }) {
    return (
       <iframe
-         ref={ref}
+         ref={iframeRef}
          title='map'
          src='/fare_evasion_map.html'
          style={{ width: "100%", height: "80vh", border: "none" }}
       />
    );
-});
+}
 
-MapComponent.displayName = "MapComponent";
-export default MapComponent;
+export default Mapping;

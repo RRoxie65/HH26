@@ -1,8 +1,8 @@
 import "./App.css";
 import { useRef } from "react";
-import Header from "./components/header";
-import Mapping from "./components/map";
-import About from "./components/about";
+import Header from "./header";
+import Mapping from "./map";
+import About from "./about";
 import SearchFilter from "./SearchFilter";
 
 function App() {
