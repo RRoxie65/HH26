@@ -1,4 +1,5 @@
 import pandas as pd
+import json
 # import time
 
 def array_of_stations(stations, str):
@@ -6,7 +7,7 @@ def array_of_stations(stations, str):
     return arr
 
 def main():
-    stations = pd.read_csv('fare-evasion-by-borough-q4-2025/MTA_Subway_Stations_Evasion_Percentage.csv', usecols=['Stop_Name', 'Borough', 'Evasion_Percentage'])
+    stations = pd.read_csv('fare-evasion-by-borough-q4-2025/MTA_Subway_Stations_Evasion_Percentage.csv', usecols=['Stop_Name', 'Borough', 'GTFS_Latitude', 'GTFS_Longitude', 'Evasion_Percentage'])
     station = input("Enter a station: ")
 
     station_array = array_of_stations(stations, station)
