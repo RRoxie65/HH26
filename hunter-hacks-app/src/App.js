@@ -1,14 +1,39 @@
 import './App.css';
+import Header from './components/header';
+import Mapping from './components/map';
+import About from './components/about';
+
 
 function App() {
+
+  const handleSearch = () =>{}
+  const handleSearch2 = () =>{}
+
   return (
       <div className="App">
-        <h1>Hunter Hacks!</h1>
-        <iframe
-          title="map"
-          src="/fare_evasion_map.html"
-          style={{ width: '100%', height: '80vh', border: 'none' }}
-        />
+       <Header />
+
+        <section id="map">
+          <Mapping />
+        </section>
+
+        <div className="searching">
+          <form onSubmit={handleSearch} className="Search bar">
+            <input type="text" placeholder="Search Station" className="searchArea"></input>
+          <form onSubmit={handleSearch2} className="Search bar">
+            <input type="text" placeholder="Search Station" className="searchArea"></input>
+            <button type="submit" className="search-button">
+              GO
+          </button>
+          </form>
+          </form>
+        </div>
+
+
+        <section id="about">
+          <About />
+        </section>
+
       </div>
     
   );
