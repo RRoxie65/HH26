@@ -1,62 +1,93 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import "./navBar.css";
 
-export default function SearchableDropdown({ value, onSelect, placeholder, options = [] }) {
-  const [query, setQuery] = useState("");
-  const [open, setOpen] = useState(false);
+function SearchSection({
+   input1,
+   setInput1,
+   input2,
+   setInput2,
+   onSearch,
+   stationOptions,
+   trainOptions,
+}) {
+   const [filteredStations, setFilteredStations] = useState([]);
+   const [filteredTrains, setFilteredTrains] = useState([]);
 
-  const filtered = options.filter(o =>
-    o.toLowerCase().includes(query.toLowerCase())
-  );
+   // Filter stations
+   useEffect(() => {
+      if (input1.trim() === "") {
+         setFilteredStations([]);
+      } else {
+         const filtered = stationOptions.filter((name) =>
+            name.toLowerCase().includes(input1.toLowerCase())
+         );
+         setFilteredStations(filtered.slice(0, 8));
+      }
+   }, [input1, stationOptions]);
 
-  function handleSelect(option) {
-    onSelect(option);
-    setQuery(option);
-    setOpen(false);
-  }
+   // Filter trains
+   useEffect(() => {
+      if (input2.trim() === "") {
+         setFilteredTrains([]);
+      } else {
+         const filtered = trainOptions.filter((train) =>
+            train.toLowerCase().includes(input2.toLowerCase())
+         );
+         setFilteredTrains(filtered.slice(0, 8));
+      }
+   }, [input2, trainOptions]);
 
-  return (
-    <div style={{ position: "relative", flex: 1 }}>
-      <input
-        value={query}
-        onChange={e => {
-          setQuery(e.target.value);
-          if (e.target.value === "") onSelect(""); // clear parent state if input cleared
-        }}
-        onFocus={() => setOpen(true)}
-        onBlur={() => setTimeout(() => setOpen(false), 150)}
-        placeholder={placeholder}
-        style={{ width: "100%", padding: "8px 12px", boxSizing: "border-box" }}
-      />
+   return (
+      <div className='search-section'>
+         <div className='search-inputs'>
+            {/* Station Input */}
+            <div className='input-group'>
+               <label>Station Name</label>
+               <input
+                  type='text'
+                  placeholder='Search Stations'
+                  value={input1}
+                  onChange={(e) => setInput1(e.target.value)}
+                  className='searchArea'
+               />
+               {filteredStations.length > 0 && (
+                  <ul className='dropdown-list'>
+                     {filteredStations.map((station, idx) => (
+                        <li key={idx} onClick={() => setInput1(station)}>
+                           {station}
+                        </li>
+                     ))}
+                  </ul>
+               )}
+            </div>
 
-      {open && filtered.length > 0 && (
-        <ul style={{
-          position: "absolute",
-          top: "calc(100% + 4px)",
-          left: 0, right: 0,
-          background: "#fff",
-          border: "1px solid #ccc",
-          borderRadius: "6px",
-          listStyle: "none",
-          margin: 0, padding: 0,
-          maxHeight: "200px",
-          overflowY: "auto",
-          zIndex: 10
-        }}>
-          {filtered.map((o, i) => (
-            <li
-              key={i}
-              onMouseDown={() => handleSelect(o)}
-              style={{
-                padding: "8px 12px",
-                cursor: "pointer",
-                background: o === value ? "#eef" : "white"
-              }}
-            >
-              {o}
-            </li>
-          ))}
-        </ul>
-      )}
-    </div>
-  );
+            {/* Train Line Input */}
+            <div className='input-group'>
+               <label>Train Line</label>
+               <input
+                  type='text'
+                  placeholder='Search Line (A, B, C, etc.)'
+                  value={input2}
+                  onChange={(e) => setInput2(e.target.value)}
+                  className='searchArea'
+               />
+               {filteredTrains.length > 0 && (
+                  <ul className='dropdown-list'>
+                     {filteredTrains.map((train, idx) => (
+                        <li key={idx} onClick={() => setInput2(train)}>
+                           {train}
+                        </li>
+                     ))}
+                  </ul>
+               )}
+            </div>
+         </div>
+
+         <button onClick={onSearch} className='search-button'>
+            GO
+         </button>
+      </div>
+   );
 }
+
+export default SearchSection;
