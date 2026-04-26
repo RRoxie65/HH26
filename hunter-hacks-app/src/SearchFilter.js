@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import "./SearchFilter.css";
 
-function SearchFilter() {
+function SearchFilter({ iframeRef }) {
    const [stationNames, setStationNames] = useState([]);
    const [stationsData, setStationsData] = useState([]);
    const [stationInput, setStationInput] = useState("");
@@ -15,7 +15,6 @@ function SearchFilter() {
 
    // Load data on mount
    useEffect(() => {
-      // Load station names
       fetch("/station_names.json")
          .then((res) => res.json())
          .then((data) => {
@@ -24,13 +23,10 @@ function SearchFilter() {
          })
          .catch((err) => console.error("Error loading station names:", err));
 
-      // Load stations data
       fetch("/stations_data.json")
          .then((res) => res.json())
          .then((data) => {
             setStationsData(data);
-
-            // Extract unique train lines
             const trains = new Set();
             data.forEach((station) => {
                if (station.Daytime_Routes) {
@@ -70,28 +66,34 @@ function SearchFilter() {
       }
    }, [trainInput, allTrains]);
 
-   // Handle station selection
    const handleSelectStation = (station) => {
       setSelectedStation(station);
       setStationInput(station);
       setFilteredStations([]);
    };
 
-   // Handle train selection
    const handleSelectTrain = (train) => {
       setSelectedTrain(train);
       setTrainInput(train);
       setFilteredTrains([]);
    };
 
-   // Handle search button click
+   console.log("iframeRef.current:", iframeRef.current);
+   const zoomToStation = (lat, lng) => {
+      if (iframeRef?.current) {
+         iframeRef.current.contentWindow.postMessage(
+            { action: "zoomToPoint", lat, lng, zoom: 15 },
+            "*"
+         );
+      }
+   };
+
    const handleSearch = () => {
       if (!selectedStation || !selectedTrain) {
          alert("Please select both a station and a train line");
          return;
       }
 
-      // Filter stations data
       const results = stationsData.filter(
          (station) =>
             station.Stop_Name === selectedStation &&
@@ -100,6 +102,12 @@ function SearchFilter() {
       );
 
       setSearchResults(results);
+
+      if (results.length > 0) {
+         const lat = results[0].GTFS_Latitude;
+         const lng = results[0].GTFS_Longitude;
+         zoomToStation(lat, lng);
+      }
    };
 
    return (

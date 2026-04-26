@@ -1,33 +1,21 @@
 import "./App.css";
+import { useRef } from "react";
 import Header from "./components/header";
 import Mapping from "./components/map";
 import About from "./components/about";
 import SearchFilter from "./SearchFilter";
 
 function App() {
-   const handleSearch = () => {};
-   const handleSearch2 = () => {};
+   const iframeRef = useRef(null);
 
    return (
       <div className='App'>
          <Header />
 
          <section id='map'>
-            <Mapping />
+            <Mapping iframeRef={iframeRef} />
          </section>
-
-         {/* <div className="searching">
-          <form onSubmit={handleSearch} className="Search bar">
-            <input type="text" placeholder="Search Station" className="searchArea"></input>
-          <form onSubmit={handleSearch2} className="Search bar">
-            <input type="text" placeholder="Search Station" className="searchArea"></input>
-            <button type="submit" className="search-button">
-              GO
-          </button>
-          </form>
-          </form>
-        </div> */}
-         <SearchFilter />
+         <SearchFilter iframeRef={iframeRef} />
 
          <section id='about'>
             <About />
