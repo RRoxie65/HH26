@@ -1,0 +1,57 @@
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&display=swap");
+
+.heading {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   padding: 0 40px;
+   height: 64px;
+   background-color: var(--mta-blue);
+   position: sticky;
+   top: 0;
+   z-index: 999;
+   border-bottom: 4px solid var(--mta-yellow);
+}
+
+/* Site name — like a bullet indicator */
+.heading span {
+   font-family: "Bebas Neue", sans-serif;
+   font-size: 28px;
+   letter-spacing: 4px;
+   color: white;
+   display: flex;
+   align-items: center;
+   gap: 12px;
+}
+
+/* Circle bullet like an MTA line badge */
+.heading span::before {
+   content: "";
+   display: inline-block;
+   width: 32px;
+   height: 32px;
+   background-color: var(--mta-yellow);
+   border-radius: 50%;
+}
+
+.heading nav {
+   display: flex;
+   gap: 8px;
+}
+
+.heading nav a {
+   font-family: "DM Mono", monospace;
+   font-size: 12px;
+   letter-spacing: 3px;
+   text-transform: uppercase;
+   color: rgba(255, 255, 255, 0.7);
+   text-decoration: none;
+   padding: 8px 16px;
+   border: 1px solid transparent;
+   transition: all 0.2s ease;
+}
+
+.heading nav a:hover {
+   color: var(--mta-yellow);
+   border-color: var(--mta-yellow);
+}

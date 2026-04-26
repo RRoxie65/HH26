@@ -1,38 +1,90 @@
+@import url("https://fonts.googleapis.com/css2?family=Helvetica+Neue:wght@400;700&family=Bebas+Neue&family=DM+Mono:wght@400;500&display=swap");
+
+:root {
+   --mta-blue: #0039a6;
+   --mta-orange: #ff6319;
+   --mta-yellow: #fccc0a;
+   --mta-red: #ee352e;
+   --mta-green: #00933c;
+   --mta-purple: #b933ad;
+   --mta-gray: #808183;
+   --mta-dark: #1a1a1a;
+   --mta-offwhite: #f5f4f0;
+   --mta-cream: #fffdf5;
+}
+
+* {
+   box-sizing: border-box;
+   margin: 0;
+   padding: 0;
+}
+
+body {
+   background-color: var(--mta-offwhite);
+   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+   color: var(--mta-dark);
+}
+
 .App {
-  text-align: center;
+   text-align: left;
+   min-height: 100vh;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* Subway stripe accent at top of page */
+.App::before {
+   content: "";
+   display: block;
+   height: 6px;
+   background: repeating-linear-gradient(
+      90deg,
+      var(--mta-blue) 0px,
+      var(--mta-blue) 60px,
+      var(--mta-orange) 60px,
+      var(--mta-orange) 120px,
+      var(--mta-yellow) 120px,
+      var(--mta-yellow) 180px,
+      var(--mta-red) 180px,
+      var(--mta-red) 240px,
+      var(--mta-green) 240px,
+      var(--mta-green) 300px,
+      var(--mta-purple) 300px,
+      var(--mta-purple) 360px
+   );
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+#map {
+   width: 100%;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+#about {
+   padding: 60px 40px;
+   max-width: 900px;
+   margin: 0 auto;
+   border-top: 2px solid #ddd;
 }
 
-.App-link {
-  color: #61dafb;
+#about h2 {
+   font-family: "Bebas Neue", sans-serif;
+   font-size: 48px;
+   letter-spacing: 2px;
+   color: var(--mta-blue);
+   margin-bottom: 20px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+#about p {
+   font-size: 16px;
+   line-height: 1.8;
+   color: #444;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+   width: 6px;
+}
+::-webkit-scrollbar-track {
+   background: var(--mta-offwhite);
+}
+::-webkit-scrollbar-thumb {
+   background: var(--mta-blue);
+   border-radius: 3px;
 }

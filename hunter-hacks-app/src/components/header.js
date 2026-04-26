@@ -1,14 +1,15 @@
-function Header(){
-    return (
-    <header className="heading">
-        <span>Name</span>
-        <nav>
-            <a href="#map">Map</a>
-            <a href="#about">About</a>
-        </nav>
+import "./header.css";
 
-    </header>
-    );
+function Header() {
+   return (
+      <header className='heading'>
+         <span>Name</span>
+         <nav>
+            <a href='#map'>Map</a>
+            <a href='#about'>About</a>
+         </nav>
+      </header>
+   );
 }
 
-export default Header
+export default Header;

@@ -1,0 +1,59 @@
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&display=swap");
+
+#about {
+   padding: 80px 40px;
+   background-color: var(--mta-offwhite);
+   position: relative;
+   overflow: hidden;
+}
+
+/* Faint oversized background text */
+#about::before {
+   content: "ABOUT";
+   position: absolute;
+   top: 20px;
+   right: -10px;
+   font-family: "Bebas Neue", sans-serif;
+   font-size: 180px;
+   letter-spacing: 10px;
+   color: rgba(0, 57, 166, 0.05);
+   pointer-events: none;
+   line-height: 1;
+   user-select: none;
+}
+
+#about h1 {
+   font-family: "Bebas Neue", sans-serif;
+   font-size: 56px;
+   letter-spacing: 4px;
+   color: var(--mta-blue);
+   margin-bottom: 8px;
+   line-height: 1;
+   position: relative;
+}
+
+/* Yellow bar under heading */
+#about h1::after {
+   content: "";
+   display: block;
+   width: 80px;
+   height: 5px;
+   background: var(--mta-yellow);
+   margin-top: 12px;
+   margin-bottom: 28px;
+}
+
+#about p {
+   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+   font-size: 17px;
+   line-height: 1.9;
+   color: #333;
+   max-width: 720px;
+   position: relative;
+}
+
+/* Left border accent */
+#about p {
+   padding-left: 24px;
+   border-left: 3px solid var(--mta-orange);
+}

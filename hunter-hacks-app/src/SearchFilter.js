@@ -112,7 +112,7 @@ function SearchFilter({ iframeRef }) {
 
    return (
       <div className='search-filter-container'>
-         <h2>Search Fare Evasion Data</h2>
+         {/* <h2>Search Fare Evasion Data</h2> */}
 
          <div className='search-inputs'>
             {/* Station Input */}
