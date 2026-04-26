@@ -1,17 +1,18 @@
-import './App.css';
+import "./App.css";
+import Map from "./Map";
+import ZoomButton from "./ZoomButton";
+import { useRef } from "react";
 
 function App() {
-  return (
-      <div className="App">
-        <h1>Hunter Hacks!</h1>
-        <iframe
-          title="map"
-          src="/fare_evasion_map.html"
-          style={{ width: '100%', height: '80vh', border: 'none' }}
-        />
+   const iframeRef = useRef(null);
+
+   return (
+      <div className='App'>
+         <h1>Hunter Hacks!</h1>
+         <Map ref={iframeRef} />
+         <ZoomButton iframeRef={iframeRef} />
       </div>
-    
-  );
+   );
 }
 
 export default App;
