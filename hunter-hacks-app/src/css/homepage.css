@@ -1,0 +1,7 @@
+h1 {
+  display: flex;
+  justify-content: space-between; /* pushes children to opposite ends */
+  align-items: center;            /* vertically centers them */
+  padding: 0 24px;
+  height: 60px;
+}
