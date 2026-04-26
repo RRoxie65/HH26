@@ -1,7 +1,7 @@
 import "./App.css";
 import { useRef } from "react";
 import Header from "./header";
-import Mapping from "./map";
+import Mapping from "./Map";
 import About from "./about";
 import SearchFilter from "./SearchFilter";
 
